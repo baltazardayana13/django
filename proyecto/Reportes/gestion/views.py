@@ -30,12 +30,12 @@ def index(request):
 
 def show(request,pk):
     
-    #Marque error 404 en pagina no encontrada lo mis mo de arriba diferente manera
+    #Marque error 404 en pagina no encontrada lo mismo de arriba diferente manera
     try:
         product=Product.objects.get(pk=pk)
     except Product.DoesNotExist:
         #pagina no valida error 404
         #return HttpResponse(status=404)
-        return HttpResponseNotFound()
+        return HttpResponse()
 
     return render(request,'show.html', {'product': product})

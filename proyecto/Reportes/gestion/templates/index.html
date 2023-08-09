@@ -4,7 +4,11 @@ Listado productos
 {% endblock title %}
 
 
-{{% block content %}
+{% block content %}
+{% for p in  products %}
+    <h3>{{p.title}}</h3>
+    <a href="{%url 'gestion:show' p.pk %}">Ver</a>
+{% endfor %}
 <nav>
 <!-- Este if permite regresar a la pagina anterior-->
     {% if products.has_previous %}
@@ -13,6 +17,7 @@ Listado productos
 <!-- Este for muestra todas las paginas-->
     {% for i in products.paginator.page_range%}
         <a href="?page={{ products.i}}">{{i}}</a>
+        
     {% endfor %}
 <!-- Este if permite ir a la pagina siguiente-->
         {% if products.has_next %}
@@ -20,7 +25,7 @@ Listado productos
     {% endif %}
 
 </nav>
-{% endblock content %}}
+{% endblock content %}
 
 
 
